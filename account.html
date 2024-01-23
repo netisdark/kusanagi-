@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(-229deg, #fbd52d, #e53a7b, #ff70af, #5fa8f5);
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width:100%;
+      height: 100vh;
+    }
+
+    .container {
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(255, 255, 255, 0.9);
+      position: absolute;
+      top:100px;
+      z-index:1;
+    }
+   input::placeholder,select::placeholder{
+       color: white;
+   }
+    input, select {
+    color:white;
+      width:50vw;
+      padding: 10px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      border-radius: 10px;
+      background: transparent;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      margin: 8px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .toggle-btn {
+      background-color: #3498db;
+      color: white;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .toggle-btn:hover {
+      background-color: #2980b9;
+    }
+    img{
+        width:40px;
+        height:40px;
+    }
+    #navbar{
+        position: absolute;
+        top:0;
+        width:100%;
+        z-index:2;
+    }
+    .container div,form{
+        display:flex;
+        align-items:center;
+        justify-content: center;
+        flex-direction:column;
+    }
+    #navbar{
+        background: linear-gradient(-229deg, #fbd52d, #e53a7b, #ff70af, #5fa8f5);
+    }
+.container{
+    background:linear-gradient(-229deg,#fbd52d,#e53a7b);
+}
+  </style>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  
+  <title>Login and Signup</title>
+</head>
+<body>
+    <nav id="navbar" class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html"><img src="home.png" alt="home"><sub>home</sub></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="account.html"><img src="account.png" alt="account"><sub>account</sub></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="dashboard.html"><img src="dashboard.png" alt=""><sub>dashboard</sub></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="games.html"><img src="games.png" alt=""><sub> games</sub></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="interact.html"><img src="interact.png" alt=""><sub>share</sub></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">&copy; Kusanagi community </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <div class="container" id="container">
+    <button class="toggle-btn" id="toggle" onclick="toggleForm()">login instead?</button>
+
+    <div id="loginForm" style="display: none;">
+      <h2>Login</h2>
+      <form action="login.php" method="post">
+        <input type="text" id="loginUsername" name="loginUsername" placeholder="NAME(Anime/Manga/Manhwa characters or OCs):" required>
+<label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" name="loginPassword" required>
+
+        <label for="loginAdmin">Admin:</label>
+        <select id="loginAdmin" name="loginAdmin">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select>
+
+        <button type="submit">Login</button>
+      </form>
+    </div>
+
+    <div id="signupForm">
+      <h2>Signup</h2>
+      <form action="signup.php" method="post">          
+        <input placeholder="NAME(Anime/Manga/Manhwa characters or OCs):" type="text" id="signupUsername" name="username" required>
+
+           <label for="signupPassword">Password:</label>
+        <input placeholder="Create Password" type="text" id="signupPassword" name="password" required>
+
+        <label for="signupLocation">Location:</label>
+        <input placeholder="City, country" type="text" id="signupLocation" name="location" required>
+
+        <label for="signupDOB">Date of Birth:</label>
+        <input type="date" id="signupDOB" name="dob" required>
+        
+        <label for="signupPhoto">Photo:</label>
+        <input type="file" id="signupPhoto" name="photo" accept="image/*" required>
+
+        <label for="signupAdmin">Admin:</label>
+        <select id="signupAdmin" name="admin">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+        </select>
+
+        <button type="submit" name="submit">Signup</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleForm() {
+      var loginForm = document.getElementById("loginForm");
+      var signupForm = document.getElementById("signupForm");
+
+      if (signupForm.style.display === "none") {
+        loginForm.style.display = "none";
+        signupForm.style.display = "block";
+       document.getElementById("container").style="background:linear-gradient(-229deg,#fbd52d,#e53a7b)"; document.getElementById("toggle").innerHTML="Login instead?";
+      } else {
+      document.getElementById("toggle").innerHTML="Sign up instead?"
+        loginForm.style.display = "block";
+        document.getElementById("container").style="background:linear-gradient(-229deg,#ff70af,#5fa8f5)";
+        signupForm.style.display = "none";
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
